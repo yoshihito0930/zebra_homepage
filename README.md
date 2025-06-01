@@ -1,5 +1,5 @@
 ## Project Goal
-既存のHPをAstroで作り変える。
+既存のスタジオゼブラHP(https://studiozebra-1st.com/)をAstroで作り変える。
 現状の課題として、以下を抱えている。
 - パフォーマンス指標が低い
 - 更新、管理がしづらい
