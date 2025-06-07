@@ -1,0 +1,10 @@
+# Robots.txt for Studio Zebra
+
+User-agent: *
+Allow: /
+
+# サイトマップ
+Sitemap: https://studiozebra-1st.com/sitemap.xml
+
+# 検索エンジンのクロールガイド
+Crawl-delay: 10

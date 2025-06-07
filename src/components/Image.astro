@@ -1,0 +1,50 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+  class?: string;
+}
+
+const { src, alt, width, height, class: className = '' } = Astro.props;
+
+// 画像パスが存在しているか確認する関数（実際には実装されていない想定）
+const imageExists = false; // 実際の実装では、ファイル存在チェックを行う
+
+// 画像がない場合のスタイル
+const placeholderStyle = `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  ${width ? `width: ${typeof width === 'number' ? `${width}px` : width};` : 'width: 100%;'}
+  ${height ? `height: ${typeof height === 'number' ? `${height}px` : height};` : 'aspect-ratio: 16/9;'}
+  max-width: 100%;
+`;
+---
+
+{
+  /* 
+    開発中は画像がないためプレースホルダーを表示
+    実際の画像が用意されたら、通常の画像表示に切り替わる
+  */
+  imageExists ? (
+    <img 
+      src={src} 
+      alt={alt} 
+      width={width} 
+      height={height} 
+      class={className} 
+      loading="lazy"
+      decoding="async"
+    />
+  ) : (
+    <div style={placeholderStyle} class={className} aria-label={alt}>
+      {alt || '画像準備中'}
+    </div>
+  )
+}

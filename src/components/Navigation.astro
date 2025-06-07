@@ -1,0 +1,185 @@
+---
+---
+
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="/">
+        <img src="/images/logo.png" alt="スタジオゼブラ" width="180" height="60">
+      </a>
+    </div>
+    
+    <button id="mobile-menu-toggle" aria-label="メニュー" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    
+    <nav id="main-nav">
+      <ul class="nav-links">
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/studio">スタジオ案内</a></li>
+        <li><a href="/price">料金案内</a></li>
+        <li><a href="/rental">レンタル機材</a></li>
+        <li><a href="/access">アクセス</a></li>
+        <li><a href="/faq">よくある質問</a></li>
+        <li><a href="/horizon">ホリゾントルール</a></li>
+        <li><a href="/news">NEWS</a></li>
+        <li><a href="https://twitter.com/studiozebra1st" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+          </svg>
+        </a></li>
+      </ul>
+      
+      <div class="cta-button">
+        <a href="/reservation" class="btn-primary">ご予約・お問い合わせ</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo img {
+    height: auto;
+    max-height: 50px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  #main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #c62b38;
+    text-decoration: none;
+  }
+
+  #mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .bar {
+    height: 3px;
+    width: 100%;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    #mobile-menu-toggle {
+      display: flex;
+    }
+
+    #main-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      flex-direction: column;
+      background-color: white;
+      width: 80%;
+      height: 100%;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.3s ease-in-out;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #main-nav.active {
+      right: 0;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+    
+    .cta-button {
+      margin-top: 2rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .btn-primary {
+      display: block;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // モバイルメニューの動作
+  document.addEventListener('astro:page-load', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (mobileMenuToggle && mainNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        const isExpanded = mainNav.classList.contains('active');
+        mobileMenuToggle.setAttribute('aria-expanded', isExpanded.toString());
+      });
+    }
+  });
+</script>

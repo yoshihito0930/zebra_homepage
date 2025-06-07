@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "NEWS | スタジオゼブラ";
+const description = "スタジオゼブラからの最新情報やお知らせを掲載しています。営業時間の変更や新サービス、キャンペーン情報などをご確認いただけます。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+	<SchemaOrg
+		type="website"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/news-header.jpg"
+	/>
+	
+	<main class="news-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>NEWS</h1>
+				<p class="lead-text">
+					スタジオゼブラからの最新情報やお知らせを掲載しています。
+				</p>
+			</div>
+		</section>
+		
+		<section class="news-content">
+			<div class="container">
+				<div class="news-grid">
+					<!-- ニュース記事はWordPressから移行予定 -->
+					<div class="news-item">
+						<div class="news-image">
+							<img src="/images/news-sample.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-text">
+							<time datetime="2025-06-01">2025.06.01</time>
+							<h2 class="news-title">夏季営業時間のお知らせ</h2>
+							<p class="news-excerpt">夏季営業時間についてのお知らせが入ります。</p>
+							<a href="/news/summer-hours" class="read-more">詳細を見る</a>
+						</div>
+					</div>
+					
+					<div class="news-item">
+						<div class="news-image">
+							<img src="/images/news-sample2.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-text">
+							<time datetime="2025-05-15">2025.05.15</time>
+							<h2 class="news-title">新しい機材が入荷しました</h2>
+							<p class="news-excerpt">新しい機材についての情報が入ります。</p>
+							<a href="/news/new-equipment" class="read-more">詳細を見る</a>
+						</div>
+					</div>
+					
+					<div class="news-item">
+						<div class="news-image">
+							<img src="/images/news-sample3.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-text">
+							<time datetime="2025-05-01">2025.05.01</time>
+							<h2 class="news-title">春のキャンペーンのお知らせ</h2>
+							<p class="news-excerpt">春のキャンペーンについての情報が入ります。</p>
+							<a href="/news/spring-campaign" class="read-more">詳細を見る</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="pagination">
+					<span class="current">1</span>
+					<a href="#" class="page-number">2</a>
+					<a href="#" class="page-number">3</a>
+					<a href="#" class="next">次へ &raquo;</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* ニュース一覧 */
+	.news-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	
+	.news-item {
+		border: 1px solid #eee;
+		border-radius: 8px;
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	
+	.news-item:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
+	
+	.news-image img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+	
+	.news-text {
+		padding: 1.5rem;
+	}
+	
+	time {
+		display: block;
+		color: var(--color-secondary);
+		font-size: 0.9rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.news-title {
+		font-size: 1.3rem;
+		margin-bottom: 1rem;
+	}
+	
+	.news-excerpt {
+		color: var(--color-secondary);
+		margin-bottom: 1rem;
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+	
+	.read-more {
+		display: inline-block;
+		font-size: 0.9rem;
+		color: var(--color-accent);
+		font-weight: 500;
+	}
+	
+	/* ページネーション */
+	.pagination {
+		margin-top: 3rem;
+		text-align: center;
+	}
+	
+	.pagination .current,
+	.pagination .page-number,
+	.pagination .next {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		margin: 0 0.25rem;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		text-decoration: none;
+	}
+	
+	.pagination .current {
+		background-color: var(--color-accent);
+		color: white;
+		border-color: var(--color-accent);
+	}
+	
+	.pagination .page-number,
+	.pagination .next {
+		color: var(--color-primary);
+	}
+	
+	.pagination .page-number:hover,
+	.pagination .next:hover {
+		background-color: #f5f5f5;
+	}
+	
+	/* レスポンシブ対応 */
+	@media (max-width: 768px) {
+		.news-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

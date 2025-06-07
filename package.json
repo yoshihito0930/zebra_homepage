@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^5.8.0"
+    "astro": "^5.8.0",
+    "terser": "^5.41.0"
   }
 }

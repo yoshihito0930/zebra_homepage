@@ -1,0 +1,116 @@
+---
+interface Props {
+  type?: 'website' | 'article' | 'product' | 'local-business';
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  author?: string;
+  organization?: {
+    name: string;
+    logo: string;
+  };
+}
+
+const { 
+  type = 'website',
+  title, 
+  description, 
+  url,
+  image,
+  datePublished,
+  dateModified,
+  author,
+  organization
+} = Astro.props;
+
+// ベーススキーマ
+const baseSchema = {
+  "@context": "https://schema.org",
+};
+
+// タイプ別のスキーマ
+let schema;
+
+switch (type) {
+  case 'local-business':
+    schema = {
+      ...baseSchema,
+      "@type": "LocalBusiness",
+      "name": "スタジオゼブラ",
+      "image": image,
+      "url": url,
+      "description": description,
+      "telephone": "+819067070936",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "千駄ヶ谷5-28-10",
+        "addressLocality": "渋谷区",
+        "addressRegion": "東京都",
+        "postalCode": "151-0051",
+        "addressCountry": "JP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.6849996,
+        "longitude": 139.7039247
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "22:00"
+      },
+      "priceRange": "¥¥"
+    };
+    break;
+  
+  case 'article':
+    schema = {
+      ...baseSchema,
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "image": image,
+      "author": {
+        "@type": "Person",
+        "name": author
+      },
+      "publisher": organization ? {
+        "@type": "Organization",
+        "name": organization.name,
+        "logo": {
+          "@type": "ImageObject",
+          "url": organization.logo
+        }
+      } : null,
+      "datePublished": datePublished,
+      "dateModified": dateModified || datePublished,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": url
+      }
+    };
+    break;
+  
+  default:
+    schema = {
+      ...baseSchema,
+      "@type": "WebSite",
+      "name": title,
+      "description": description,
+      "url": url
+    };
+    break;
+}
+
+// 不要なnullプロパティを削除
+const cleanSchema = JSON.parse(JSON.stringify(schema));
+---
+
+<!-- Schema.org マークアップ -->
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema)}></script>

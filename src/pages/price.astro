@@ -1,0 +1,533 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Image from '../components/Image.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "料金案内 | スタジオゼブラ";
+const description = "スタジオゼブラの料金プランをご紹介。リーズナブルな価格設定で、時間単位から一日貸切までご用意。追加料金なしでプロ機材が使い放題です。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+	<SchemaOrg
+		type="local-business"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/price-header.jpg"
+	/>
+	
+	<main class="price-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>料金案内</h1>
+				<p class="lead-text">
+					リーズナブルな料金で質の高い撮影環境をご提供。
+					豊富なプロ機材も追加料金なしでご利用いただけます。
+				</p>
+			</div>
+		</section>
+		
+		<section class="price-table-section">
+			<div class="container">
+				<h2 class="section-title">スタジオ利用料金</h2>
+				
+				<div class="price-grid">
+					<div class="price-card">
+						<div class="price-card-header">
+							<h3>時間貸プラン</h3>
+							<div class="price">¥4,500<span class="unit">/時間</span></div>
+						</div>
+						<div class="price-card-body">
+							<ul class="price-features">
+								<li>最低利用時間: 2時間〜</li>
+								<li>全機材利用可能（追加料金なし）</li>
+								<li>撮影アシスタント: 別途</li>
+								<li>予約変更: 3日前まで可能</li>
+							</ul>
+							<p class="note">※時間外の延長は30分単位で対応可能（30分: ¥2,500）</p>
+						</div>
+					</div>
+					
+					<div class="price-card featured">
+						<div class="price-card-header">
+							<div class="badge">人気</div>
+							<h3>4時間パック</h3>
+							<div class="price">¥16,000<span class="unit">/4時間</span></div>
+							<div class="discount">通常料金より¥2,000お得！</div>
+						</div>
+						<div class="price-card-body">
+							<ul class="price-features">
+								<li>連続4時間のご利用</li>
+								<li>全機材利用可能（追加料金なし）</li>
+								<li>撮影アシスタント: 別途</li>
+								<li>予約変更: 3日前まで可能</li>
+								<li>30分の延長: ¥2,000</li>
+							</ul>
+							<p class="note">※多くのお客様にご利用いただいているプランです</p>
+						</div>
+					</div>
+					
+					<div class="price-card">
+						<div class="price-card-header">
+							<h3>一日貸切プラン</h3>
+							<div class="price">¥32,000<span class="unit">/日</span></div>
+							<div class="discount">通常料金より¥4,000お得！</div>
+						</div>
+						<div class="price-card-body">
+							<ul class="price-features">
+								<li>営業時間内（9:00〜22:00）</li>
+								<li>全機材利用可能（追加料金なし）</li>
+								<li>撮影アシスタント: 別途</li>
+								<li>予約変更: 7日前まで可能</li>
+								<li>控室優先利用</li>
+							</ul>
+							<p class="note">※大規模撮影や長時間の利用に最適です</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="price-notes">
+					<h3>ご利用に関する注意事項</h3>
+					<ul>
+						<li>料金はすべて税込み表示です</li>
+						<li>お支払いは、現金・クレジットカード・銀行振込に対応しております</li>
+						<li>ご予約のキャンセルは3日前までにご連絡ください（それ以降はキャンセル料が発生します）</li>
+						<li>機材の破損・紛失があった場合は、実費をご負担いただきます</li>
+						<li>混雑状況により、ご希望の日時にご予約いただけない場合がございます</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		<section class="equipment-section">
+			<div class="container">
+				<h2 class="section-title">無料でご利用いただける機材</h2>
+				<p class="section-desc">スタジオレンタル料金に含まれており、追加料金なしでご利用いただけます。</p>
+				
+				<div class="equipment-grid">
+					<div class="equipment-category">
+						<h3>照明機材</h3>
+						<ul>
+							<li>ストロボ（600W×4灯）</li>
+							<li>LEDライト（調光可能×2台）</li>
+							<li>リフレクター（各種サイズ）</li>
+							<li>ソフトボックス（大・中・小）</li>
+							<li>アンブレラ（銀・白・黒）</li>
+							<li>ライトスタンド（各種）</li>
+						</ul>
+					</div>
+					
+					<div class="equipment-category">
+						<h3>背景</h3>
+						<ul>
+							<li>3面Rホリゾント（白）</li>
+							<li>背景紙（白・黒・グレー）</li>
+							<li>背景スタンド</li>
+							<li>バックペーパー各種</li>
+						</ul>
+					</div>
+					
+					<div class="equipment-category">
+						<h3>その他備品</h3>
+						<ul>
+							<li>ポージング用チェア</li>
+							<li>姿見</li>
+							<li>撮影台（商品撮影用）</li>
+							<li>Mac（Photoshop搭載）</li>
+							<li>Wi-Fi環境</li>
+						</ul>
+					</div>
+					
+					<div class="equipment-category">
+						<h3>有料オプション機材</h3>
+						<ul>
+							<li>撮影機材レンタル（要予約）</li>
+							<li>専門照明機材（要予約）</li>
+							<li>撮影アシスタント（1時間: ¥3,000〜）</li>
+						</ul>
+					</div>
+				</div>
+				
+				<p class="equipment-note">※詳細な機材リストは<a href="/rental">レンタル機材ページ</a>をご覧ください</p>
+			</div>
+		</section>
+		
+		<section class="discount-section">
+			<div class="container">
+				<h2 class="section-title">お得な割引プラン</h2>
+				
+				<div class="discount-grid">
+					<div class="discount-card">
+						<h3>平日割引</h3>
+						<div class="discount-amount">10% OFF</div>
+						<p>月曜〜金曜の10:00〜17:00のご利用で適用</p>
+						<small>※祝日・特定期間は除く</small>
+					</div>
+					
+					<div class="discount-card">
+						<h3>学生割引</h3>
+						<div class="discount-amount">20% OFF</div>
+						<p>学生証提示で全プラン対象</p>
+						<small>※他の割引との併用不可</small>
+					</div>
+					
+					<div class="discount-card">
+						<h3>リピーター割引</h3>
+						<div class="discount-amount">5% OFF</div>
+						<p>3回目以降のご利用で自動適用</p>
+						<small>※他の割引と併用可能</small>
+					</div>
+					
+					<div class="discount-card">
+						<h3>長期予約割引</h3>
+						<div class="discount-amount">10% OFF</div>
+						<p>30日前までの予約で適用</p>
+						<small>※キャンセル・変更時は適用外</small>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cta-section">
+			<div class="container">
+				<h2>ご予約・お問い合わせ</h2>
+				<p>お気軽にお問い合わせください。スタッフが丁寧にご案内いたします。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">ご予約はこちら</a>
+					<a href="/faq" class="btn-secondary">よくある質問</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.section-title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		text-align: center;
+		position: relative;
+	}
+	
+	.section-title::after {
+		content: '';
+		display: block;
+		width: 50px;
+		height: 3px;
+		background-color: var(--color-accent);
+		margin: 0.5rem auto;
+	}
+	
+	.section-desc {
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto 2rem;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* 料金テーブルセクション */
+	.price-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+	
+	.price-card {
+		border: 1px solid #eee;
+		border-radius: 8px;
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		background-color: white;
+	}
+	
+	.price-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
+	
+	.price-card.featured {
+		border-color: var(--color-accent);
+		transform: scale(1.05);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		position: relative;
+	}
+	
+	.price-card.featured .badge {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.5rem 1rem;
+		font-weight: bold;
+		font-size: 0.9rem;
+	}
+	
+	.price-card-header {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		text-align: center;
+		border-bottom: 1px solid #eee;
+	}
+	
+	.price-card.featured .price-card-header {
+		background-color: rgba(230, 57, 70, 0.05);
+	}
+	
+	.price-card-header h3 {
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+	
+	.price {
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: var(--color-primary);
+	}
+	
+	.unit {
+		font-size: 1rem;
+		color: var(--color-secondary);
+		font-weight: normal;
+	}
+	
+	.discount {
+		margin-top: 0.5rem;
+		color: var(--color-accent);
+		font-size: 0.9rem;
+		font-weight: bold;
+	}
+	
+	.price-card-body {
+		padding: 2rem;
+	}
+	
+	.price-features {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem 0;
+	}
+	
+	.price-features li {
+		margin-bottom: 0.5rem;
+		padding-left: 1.5rem;
+		position: relative;
+	}
+	
+	.price-features li::before {
+		content: '✓';
+		color: var(--color-accent);
+		position: absolute;
+		left: 0;
+		font-weight: bold;
+	}
+	
+	.note {
+		font-size: 0.9rem;
+		color: var(--color-secondary);
+		font-style: italic;
+	}
+	
+	.price-notes {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+	}
+	
+	.price-notes h3 {
+		margin-bottom: 1rem;
+		font-size: 1.3rem;
+	}
+	
+	.price-notes ul {
+		padding-left: 1.5rem;
+	}
+	
+	.price-notes ul li {
+		margin-bottom: 0.5rem;
+	}
+	
+	/* 機材セクション */
+	.equipment-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
+	
+	.equipment-category {
+		background-color: #f9f9f9;
+		padding: 1.5rem;
+		border-radius: 8px;
+	}
+	
+	.equipment-category h3 {
+		margin-bottom: 1rem;
+		font-size: 1.3rem;
+		color: var(--color-accent);
+		border-bottom: 2px solid var(--color-accent);
+		padding-bottom: 0.5rem;
+	}
+	
+	.equipment-category ul {
+		padding-left: 1.5rem;
+		margin: 0;
+	}
+	
+	.equipment-category li {
+		margin-bottom: 0.5rem;
+	}
+	
+	.equipment-note {
+		text-align: center;
+		font-size: 0.9rem;
+		margin-top: 2rem;
+	}
+	
+	/* 割引セクション */
+	.discount-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+	
+	.discount-card {
+		background-color: #f9f9f9;
+		padding: 1.5rem;
+		border-radius: 8px;
+		text-align: center;
+		transition: transform 0.3s ease;
+	}
+	
+	.discount-card:hover {
+		transform: scale(1.05);
+	}
+	
+	.discount-card h3 {
+		margin-bottom: 0.5rem;
+		color: var(--color-primary);
+	}
+	
+	.discount-amount {
+		font-size: 1.8rem;
+		font-weight: bold;
+		color: var(--color-accent);
+		margin-bottom: 0.5rem;
+	}
+	
+	.discount-card p {
+		margin-bottom: 0.5rem;
+	}
+	
+	.discount-card small {
+		color: var(--color-secondary);
+		font-size: 0.8rem;
+	}
+	
+	/* CTA セクション */
+	.cta-section {
+		background-color: #f5f5f5;
+		padding: 3rem 0;
+		text-align: center;
+		border-radius: 8px;
+	}
+	
+	.cta-section h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	
+	.cta-section p {
+		margin-bottom: 2rem;
+		font-size: 1.1rem;
+	}
+	
+	.cta-buttons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+	
+	.btn-secondary {
+		display: inline-block;
+		background-color: transparent;
+		color: var(--color-accent);
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		border: 1px solid var(--color-accent);
+		transition: all 0.2s ease;
+	}
+	
+	.btn-secondary:hover {
+		background-color: var(--color-accent);
+		color: white;
+		text-decoration: none;
+	}
+	
+	/* レスポンシブ対応 */
+	@media (max-width: 768px) {
+		.price-card.featured {
+			transform: none;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
+		
+		.cta-buttons {
+			flex-direction: column;
+			gap: 1rem;
+			max-width: 300px;
+			margin: 0 auto;
+		}
+	}
+</style>

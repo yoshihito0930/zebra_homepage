@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "ホリゾントルール | スタジオゼブラ";
+const description = "ホリゾント撮影の基本ルールとマナーについて。スタジオゼブラの白ホリゾントを美しく保つための注意点をご案内します。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+	<SchemaOrg
+		type="website"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/horizon-header.jpg"
+	/>
+	
+	<main class="horizon-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>ホリゾントルール</h1>
+				<p class="lead-text">
+					スタジオゼブラの白ホリゾントを美しく保つための
+					撮影ルールとマナーについてご案内します。
+				</p>
+			</div>
+		</section>
+		
+		<section class="horizon-intro">
+			<div class="container">
+				<h2 class="section-title">ホリゾントとは</h2>
+				<div class="intro-content">
+					<p>ホリゾントに関する基本情報が入ります</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="horizon-rules">
+			<div class="container">
+				<h2 class="section-title">ご利用時のお願い</h2>
+				
+				<div class="rule">
+					<h3>1. 靴について</h3>
+					<div class="rule-content">
+						<p>靴に関するルールが入ります</p>
+					</div>
+				</div>
+				
+				<div class="rule">
+					<h3>2. ホリゾント上での飲食</h3>
+					<div class="rule-content">
+						<p>飲食に関するルールが入ります</p>
+					</div>
+				</div>
+				
+				<div class="rule">
+					<h3>3. メイクについて</h3>
+					<div class="rule-content">
+						<p>メイクに関するルールが入ります</p>
+					</div>
+				</div>
+				
+				<div class="rule">
+					<h3>4. 機材の設置</h3>
+					<div class="rule-content">
+						<p>機材設置に関するルールが入ります</p>
+					</div>
+				</div>
+				
+				<div class="rule">
+					<h3>5. 撮影後のお願い</h3>
+					<div class="rule-content">
+						<p>撮影後の注意点が入ります</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="maintenance">
+			<div class="container">
+				<h2 class="section-title">ホリゾントのメンテナンスについて</h2>
+				<div class="maintenance-content">
+					<p>メンテナンスに関する情報が入ります</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cta-section">
+			<div class="container">
+				<h2>ご不明点はお問い合わせください</h2>
+				<p>スタジオゼブラでは、ホリゾントの美しさを維持するため、皆様のご協力をお願いしております。<br>
+				ご不明点がございましたら、お気軽にスタッフにお尋ねください。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">ご予約・お問い合わせ</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.section-title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		position: relative;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* ルール項目 */
+	.rule {
+		margin-bottom: 2.5rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid #eee;
+	}
+	
+	.rule h3 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--color-primary);
+	}
+	
+	.rule-content {
+		padding-left: 1.5rem;
+	}
+	
+	/* メンテナンスセクション */
+	.maintenance {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+	}
+	
+	/* CTAセクション */
+	.cta-section {
+		background-color: #f5f5f5;
+		padding: 3rem 0;
+		text-align: center;
+		margin-top: 4rem;
+		border-radius: 8px;
+	}
+	
+	.cta-buttons {
+		margin-top: 1.5rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+</style>

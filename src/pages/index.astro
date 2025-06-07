@@ -1,11 +1,494 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="スタジオゼブラ | 横浜の写真スタジオ" 
+        description="代々木駅・新宿駅至近の美しい白ホリゾントを備えたレンタル撮影スタジオ。豊富なプロ機材が無料で使えてコスパ抜群。ポートレート、宣材、アパレル、商品撮影にもおすすめ。">
+	
+	<!-- ヒーローセクション -->
+	<section class="hero">
+		<div class="hero-slider">
+			<div class="slide">
+				<img src="/images/hero1.jpg" alt="スタジオゼブラの撮影スタジオ" width="1200" height="600" />
+			</div>
+		</div>
+		<div class="hero-content">
+			<h1 class="hero-title">
+				<span class="visually-hidden">スタジオゼブラ</span>
+				<img src="/images/hero-title.png" alt="LOW PRICE SHINJUKU STUDIO ZEBRA" width="500" height="100" />
+			</h1>
+			<div class="hero-cta">
+				<a href="/reservation" class="btn-lg">ご予約はこちら</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- リードセクション -->
+	<section class="lead">
+		<div class="container">
+			<h2 class="section-title">スタジオゼブラについて</h2>
+			<div class="price-banner">
+				<img src="/images/price-banner.jpg" alt="料金案内 基本レンタル料金 ¥4,500/時間〜" width="800" height="200" />
+			</div>
+			<div class="lead-text">
+				<p>スタジオゼブラは、代々木・新宿エリアにある白ホリレンタル撮影スタジオです。</p>
+				<p>人物撮影、商品撮影など様々な用途にご利用いただけます。</p>
+				<p>豊富なプロ機材を無料でご利用いただけるため、コストパフォーマンスに優れています。</p>
+			</div>
+			<div class="lead-cta">
+				<a href="/price" class="btn">料金案内を見る</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- 特徴セクション -->
+	<section class="features">
+		<div class="container">
+			<h2 class="section-title">スタジオの特徴</h2>
+			<div class="feature-grid">
+				<article class="feature-card">
+					<span class="feature-number">01</span>
+					<div class="feature-image">
+						<img src="/images/feature1.jpg" alt="アクセス" width="400" height="300" />
+					</div>
+					<div class="feature-content">
+						<h3>代々木駅から徒歩5分<br>新宿駅からも近い好立地</h3>
+						<p>明治通り沿いにあり、複数の駅からアクセス可能な便利な立地です。</p>
+						<a href="/access" class="btn-sm">アクセスを見る</a>
+					</div>
+				</article>
+				
+				<article class="feature-card">
+					<span class="feature-number">02</span>
+					<div class="feature-image">
+						<img src="/images/feature2.jpg" alt="白ホリゾント" width="400" height="300" />
+					</div>
+					<div class="feature-content">
+						<h3>美しい白ホリゾント<br>3面R構造で自然な仕上がり</h3>
+						<p>天高最大3m、最大9mの引きで様々な撮影に対応できます。</p>
+						<a href="/studio" class="btn-sm">スタジオを見る</a>
+					</div>
+				</article>
+				
+				<article class="feature-card">
+					<span class="feature-number">03</span>
+					<div class="feature-image">
+						<img src="/images/feature3.jpg" alt="レンタル機材" width="400" height="300" />
+					</div>
+					<div class="feature-content">
+						<h3>豊富なプロ機材が<br>追加料金なしで使い放題</h3>
+						<p>ストロボ、LEDライト、バックペーパーなど必要な機材を無料でご利用いただけます。</p>
+						<a href="/rental" class="btn-sm">機材を見る</a>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- 予約バナー -->
+	<section class="reservation-banner">
+		<div class="container">
+			<h2>
+				<img src="/images/reservation-title.png" alt="RESERVATION" width="300" height="60" />
+			</h2>
+			<a href="/reservation" class="btn-lg">ご予約・お問い合わせ</a>
+		</div>
+	</section>
+
+	<!-- ニュースセクション -->
+	<section class="news">
+		<div class="container">
+			<h2 class="section-title">NEWS</h2>
+			<div class="news-grid">
+				<!-- ニュース記事はDynamicルートで実装予定 -->
+				<article class="news-card">
+					<a href="/news/latest" class="news-link">
+						<div class="news-image">
+							<img src="/images/news-sample.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-content">
+							<time class="news-date">2025-06-01</time>
+							<h3 class="news-title">夏季営業時間のお知らせ</h3>
+						</div>
+					</a>
+				</article>
+				<article class="news-card">
+					<a href="/news/equipment" class="news-link">
+						<div class="news-image">
+							<img src="/images/news-sample2.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-content">
+							<time class="news-date">2025-05-15</time>
+							<h3 class="news-title">新しい機材が入荷しました</h3>
+						</div>
+					</a>
+				</article>
+				<article class="news-card">
+					<a href="/news/campaign" class="news-link">
+						<div class="news-image">
+							<img src="/images/news-sample3.jpg" alt="ニュースサンプル画像" width="300" height="200" />
+						</div>
+						<div class="news-content">
+							<time class="news-date">2025-05-01</time>
+							<h3 class="news-title">春のキャンペーンのお知らせ</h3>
+						</div>
+					</a>
+				</article>
+			</div>
+			<div class="news-more">
+				<a href="/news" class="btn">ニュース一覧</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- アクセスセクション -->
+	<section class="access-map">
+		<div class="access-info">
+			<h2 class="section-title">ACCESS</h2>
+			<p class="address">
+				〒151-0051<br>
+				東京都渋谷区千駄ヶ谷5-28-10<br>
+				ヴィラコープ新宿B101
+			</p>
+			<a href="/access" class="btn-sm">詳しいアクセス</a>
+		</div>
+		<div class="map-container">
+			<iframe 
+				src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12962.70066365035!2d139.7039247!3d35.6849996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe2a619233d3d372f!2z44K544K_44K444Kq44K844OW44Op!5e0!3m2!1sja!2s!4v1602220734771!5m2!1sja!2s" 
+				width="600" height="450" 
+				style="border:0;" 
+				allowfullscreen="" 
+				loading="lazy"
+				title="スタジオゼブラの地図">
+			</iframe>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	/* ヒーローセクション */
+	.hero {
+		position: relative;
+		height: 80vh;
+		min-height: 500px;
+		overflow: hidden;
+		margin-bottom: 3rem;
+	}
+
+	.hero-slider {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+
+	.slide {
+		width: 100%;
+		height: 100%;
+	}
+
+	.slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		width: 90%;
+		max-width: 800px;
+	}
+
+	.hero-title {
+		margin-bottom: 2rem;
+	}
+
+	.hero-title img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+
+	/* コンテナ */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+
+	/* セクション */
+	section {
+		margin-bottom: 5rem;
+	}
+
+	.section-title {
+		font-size: 2rem;
+		text-align: center;
+		margin-bottom: 2rem;
+		position: relative;
+	}
+
+	.section-title::after {
+		content: '';
+		display: block;
+		width: 50px;
+		height: 3px;
+		background-color: var(--color-accent);
+		margin: 0.5rem auto;
+	}
+
+	/* リードセクション */
+	.lead {
+		text-align: center;
+	}
+
+	.price-banner {
+		margin-bottom: 2rem;
+	}
+
+	.price-banner img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.lead-text {
+		max-width: 700px;
+		margin: 0 auto 2rem;
+		font-size: 1.1rem;
+		line-height: 1.8;
+	}
+
+	/* 特徴セクション */
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.feature-card {
+		position: relative;
+		border: 1px solid #eee;
+		border-radius: 8px;
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.feature-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	.feature-number {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		background-color: var(--color-accent);
+		color: white;
+		font-weight: bold;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		font-size: 1.2rem;
+		z-index: 1;
+	}
+
+	.feature-image img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+
+	.feature-content {
+		padding: 1.5rem;
+	}
+
+	.feature-content h3 {
+		margin-bottom: 1rem;
+		font-size: 1.3rem;
+		line-height: 1.4;
+	}
+
+	/* 予約バナー */
+	.reservation-banner {
+		background-color: #f9f9f9;
+		padding: 3rem 0;
+		text-align: center;
+		border-radius: 8px;
+		margin: 5rem 0;
+	}
+
+	.reservation-banner h2 {
+		margin-bottom: 1.5rem;
+	}
+
+	.reservation-banner img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* ニュースセクション */
+	.news-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.news-card {
+		border: 1px solid #eee;
+		border-radius: 8px;
+		overflow: hidden;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.news-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	.news-link {
+		text-decoration: none;
+		color: var(--color-text);
+		display: block;
+	}
+
+	.news-image img {
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+	}
+
+	.news-content {
+		padding: 1.5rem;
+	}
+
+	.news-date {
+		display: block;
+		color: var(--color-secondary);
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	.news-title {
+		font-size: 1.1rem;
+		margin: 0;
+	}
+
+	.news-more {
+		text-align: center;
+		margin-top: 2rem;
+	}
+
+	/* アクセスマップ */
+	.access-map {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 2rem;
+		background-color: #f5f5f5;
+		margin-bottom: 0;
+	}
+
+	.access-info {
+		padding: 3rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.access-info .section-title {
+		text-align: left;
+	}
+
+	.access-info .section-title::after {
+		margin-left: 0;
+	}
+
+	.address {
+		margin-bottom: 2rem;
+		line-height: 1.8;
+	}
+
+	.map-container {
+		height: 400px;
+	}
+
+	.map-container iframe {
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+
+	/* ボタン */
+	.btn, .btn-sm, .btn-lg {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 4px;
+		font-weight: 500;
+		transition: background-color 0.2s ease;
+	}
+
+	.btn:hover, .btn-sm:hover, .btn-lg:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+
+	.btn {
+		padding: 0.75rem 2rem;
+	}
+
+	.btn-sm {
+		padding: 0.5rem 1rem;
+		font-size: 0.9rem;
+	}
+
+	.btn-lg {
+		padding: 1rem 3rem;
+		font-size: 1.2rem;
+	}
+
+	/* レスポンシブ */
+	@media (max-width: 992px) {
+		.hero {
+			height: 60vh;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			height: 50vh;
+		}
+
+		.hero-content {
+			width: 95%;
+		}
+
+		.access-map {
+			grid-template-columns: 1fr;
+		}
+
+		.access-info {
+			padding: 2rem;
+		}
+
+		.map-container {
+			height: 300px;
+		}
+	}
+</style>

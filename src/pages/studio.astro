@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "スタジオ案内 | スタジオゼブラ";
+const description = "東京都渋谷区にある、代々木駅・新宿駅至近の美しい白ホリゾントを備えたレンタル撮影スタジオ。広々とした撮影スペースと豊富な機材で、あらゆる撮影に対応します。";
+---
+
+<Layout title={title} description={description}>
+	<main class="studio-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>スタジオ案内</h1>
+				<p class="lead-text">
+					スタジオゼブラは、ポートレート撮影から商品撮影まで幅広い用途に対応できる撮影スタジオです。
+					美しい白ホリゾントと豊富な機材で、理想の撮影環境を提供します。
+				</p>
+			</div>
+		</section>
+		
+		<section class="studio-overview">
+			<div class="container">
+				<div class="studio-grid">
+					<div class="studio-image">
+						<img src="/images/studio-main.jpg" alt="スタジオゼブラ全景" width="600" height="400" />
+					</div>
+					<div class="studio-details">
+						<h2>スタジオ概要</h2>
+						<dl class="info-list">
+							<div class="info-item">
+								<dt>面積</dt>
+								<dd>約30㎡</dd>
+							</div>
+							<div class="info-item">
+								<dt>天井高</dt>
+								<dd>最大3m</dd>
+							</div>
+							<div class="info-item">
+								<dt>最大引き</dt>
+								<dd>約9m</dd>
+							</div>
+							<div class="info-item">
+								<dt>ホリゾント</dt>
+								<dd>3面Rホリゾント（白）</dd>
+							</div>
+							<div class="info-item">
+								<dt>Wi-Fi</dt>
+								<dd>無料（高速インターネット完備）</dd>
+							</div>
+							<div class="info-item">
+								<dt>控室</dt>
+								<dd>あり（メイク・着替えスペース）</dd>
+							</div>
+						</dl>
+						<p class="note">※詳細な機材については<a href="/rental">レンタル機材ページ</a>をご確認ください。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="studio-photos">
+			<div class="container">
+				<h2 class="section-title">スタジオ写真</h2>
+				<div class="photo-grid">
+					<div class="photo-item">
+						<img src="/images/studio-photo1.jpg" alt="白ホリゾント" width="400" height="300" />
+						<p class="caption">美しい3面Rホリゾント</p>
+					</div>
+					<div class="photo-item">
+						<img src="/images/studio-photo2.jpg" alt="機材エリア" width="400" height="300" />
+						<p class="caption">豊富な撮影機材</p>
+					</div>
+					<div class="photo-item">
+						<img src="/images/studio-photo3.jpg" alt="控室" width="400" height="300" />
+						<p class="caption">メイク・着替えスペース</p>
+					</div>
+					<div class="photo-item">
+						<img src="/images/studio-photo4.jpg" alt="スタジオ入口" width="400" height="300" />
+						<p class="caption">スタジオエントランス</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="studio-features">
+			<div class="container">
+				<h2 class="section-title">スタジオの特徴</h2>
+				<div class="features-grid">
+					<div class="feature-item">
+						<div class="feature-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+							</svg>
+						</div>
+						<h3>3面R構造の白ホリゾント</h3>
+						<p>床と壁の境目が目立たない滑らかな曲線を描く3面R構造の白ホリゾントを採用。背景に影が出にくく、自然な撮影が可能です。</p>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+								<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+							</svg>
+						</div>
+						<h3>豊富な機材が無料で使い放題</h3>
+						<p>ストロボ、LEDライト、三脚、レフ板など、プロ仕様の撮影機材を追加料金なしでご利用いただけます。</p>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+								<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+							</svg>
+						</div>
+						<h3>メイクスペース完備</h3>
+						<p>撮影に必要な着替えやメイク用のスペースを完備。大きな鏡と明るい照明でメイク・ヘアセットも快適です。</p>
+					</div>
+					<div class="feature-item">
+						<div class="feature-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+							</svg>
+						</div>
+						<h3>リーズナブルな料金設定</h3>
+						<p>機材使用料込みで時間4,500円〜とリーズナブルな価格設定。長時間利用の場合はさらにお得なプランもございます。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cta-section">
+			<div class="container">
+				<h2>ご予約・お問い合わせ</h2>
+				<p>スタジオゼブラでの撮影をご検討の方は、お気軽にお問い合わせください。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">ご予約はこちら</a>
+					<a href="/price" class="btn-secondary">料金を確認する</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.section-title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		text-align: center;
+		position: relative;
+	}
+	
+	.section-title::after {
+		content: '';
+		display: block;
+		width: 50px;
+		height: 3px;
+		background-color: var(--color-accent);
+		margin: 0.5rem auto;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* スタジオ概要 */
+	.studio-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		align-items: center;
+	}
+	
+	.studio-image img {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+	}
+	
+	.studio-details h2 {
+		font-size: 1.8rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	.info-list {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.info-item {
+		display: flex;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 0.5rem;
+	}
+	
+	.info-item dt {
+		font-weight: bold;
+		width: 100px;
+	}
+	
+	.info-item dd {
+		margin: 0;
+		flex: 1;
+	}
+	
+	.note {
+		margin-top: 1.5rem;
+		font-size: 0.9rem;
+		color: var(--color-secondary);
+	}
+	
+	/* スタジオ写真 */
+	.photo-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1.5rem;
+	}
+	
+	.photo-item {
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	}
+	
+	.photo-item img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+	
+	.caption {
+		padding: 0.75rem;
+		margin: 0;
+		background-color: white;
+		font-size: 0.9rem;
+		text-align: center;
+	}
+	
+	/* スタジオの特徴 */
+	.features-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+	
+	.feature-item {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+		text-align: center;
+	}
+	
+	.feature-icon {
+		margin-bottom: 1rem;
+		color: var(--color-accent);
+	}
+	
+	.feature-item h3 {
+		margin-bottom: 1rem;
+		font-size: 1.3rem;
+	}
+	
+	.feature-item p {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+	
+	/* CTA セクション */
+	.cta-section {
+		background-color: #f5f5f5;
+		padding: 3rem 0;
+		text-align: center;
+		border-radius: 8px;
+	}
+	
+	.cta-section h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	
+	.cta-section p {
+		margin-bottom: 2rem;
+		font-size: 1.1rem;
+	}
+	
+	.cta-buttons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+	
+	.btn-secondary {
+		display: inline-block;
+		background-color: transparent;
+		color: var(--color-accent);
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		border: 1px solid var(--color-accent);
+		transition: all 0.2s ease;
+	}
+	
+	.btn-secondary:hover {
+		background-color: var(--color-accent);
+		color: white;
+		text-decoration: none;
+	}
+	
+	/* レスポンシブ対応 */
+	@media (max-width: 768px) {
+		.studio-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.studio-image {
+			order: -1;
+		}
+		
+		.cta-buttons {
+			flex-direction: column;
+			gap: 1rem;
+			max-width: 300px;
+			margin: 0 auto;
+		}
+	}
+</style>

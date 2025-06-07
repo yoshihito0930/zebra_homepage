@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "利用規約 | スタジオゼブラ";
+const description = "スタジオゼブラのご利用に関する規約です。ご予約時には必ずご確認ください。";
+---
+
+<Layout title={title} description={description}>
+	<main class="policy-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>利用規約</h1>
+				<p class="lead-text">
+					スタジオゼブラをご利用いただく際の規約です。
+					ご予約・ご利用の前に必ずお読みください。
+				</p>
+			</div>
+		</section>
+		
+		<section class="policy-content">
+			<div class="container">
+				<div class="policy-section">
+					<h2>1. 予約について</h2>
+					<div class="policy-text">
+						<p>予約に関する基本的な規約が入ります。</p>
+					</div>
+				</div>
+				
+				<div class="policy-section">
+					<h2>2. キャンセルポリシー</h2>
+					<div class="policy-text">
+						<p>キャンセルポリシーに関する規約が入ります。</p>
+					</div>
+				</div>
+				
+				<div class="policy-section">
+					<h2>3. 施設利用について</h2>
+					<div class="policy-text">
+						<p>施設利用に関する規約が入ります。</p>
+					</div>
+				</div>
+				
+				<div class="policy-section">
+					<h2>4. 機材利用について</h2>
+					<div class="policy-text">
+						<p>機材利用に関する規約が入ります。</p>
+					</div>
+				</div>
+				
+				<div class="policy-section">
+					<h2>5. 禁止事項</h2>
+					<div class="policy-text">
+						<p>禁止事項に関する規約が入ります。</p>
+					</div>
+				</div>
+				
+				<div class="policy-section">
+					<h2>6. 免責事項</h2>
+					<div class="policy-text">
+						<p>免責事項に関する規約が入ります。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="cta-section">
+			<div class="container">
+				<p>規約に関するご質問がある場合はお気軽にお問い合わせください。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">お問い合わせ</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* 利用規約コンテンツ */
+	.policy-section {
+		margin-bottom: 2.5rem;
+	}
+	
+	.policy-section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #eee;
+	}
+	
+	.policy-text {
+		font-size: 1rem;
+		line-height: 1.8;
+	}
+	
+	/* CTA セクション */
+	.cta-section {
+		background-color: #f5f5f5;
+		padding: 2rem 0;
+		text-align: center;
+		margin-top: 3rem;
+		border-radius: 8px;
+	}
+	
+	.cta-buttons {
+		margin-top: 1.5rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+</style>

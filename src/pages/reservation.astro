@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "ご予約・お問い合わせ | スタジオゼブラ";
+const description = "スタジオゼブラのご予約・お問い合わせページ。オンラインフォーム、お電話、メールでのご予約を承っております。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+	<SchemaOrg
+		type="website"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/reservation-header.jpg"
+	/>
+	
+	<main class="reservation-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>ご予約・お問い合わせ</h1>
+				<p class="lead-text">
+					スタジオゼブラへのご予約・お問い合わせはこちらから。
+					オンラインフォーム、お電話、メールでのご予約を承っております。
+				</p>
+			</div>
+		</section>
+		
+		<section class="contact-info">
+			<div class="container">
+				<div class="contact-methods">
+					<div class="contact-method">
+						<h2>お電話でのご予約</h2>
+						<p class="phone"><a href="tel:09067070936">090-6707-0936</a></p>
+						<p class="note">受付時間: 平日9:00〜20:00</p>
+					</div>
+					
+					<div class="contact-method">
+						<h2>メールでのご予約</h2>
+						<p class="email"><a href="mailto:info@studiozebra-1st.com">info@studiozebra-1st.com</a></p>
+						<p class="note">24時間受付・順次対応</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="reservation-form">
+			<div class="container">
+				<h2 class="section-title">オンラインご予約フォーム</h2>
+				<p class="form-intro">
+					フォームからのご予約は、下記必要事項をご入力の上、送信してください。<br>
+					通常1営業日以内にご返信いたします。
+				</p>
+				
+				<div class="form-placeholder">
+					<p>予約フォームが入ります（現在は仮置きです）</p>
+					<p>※WordPress から移行後、実際のフォームを設置予定</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="reservation-policy">
+			<div class="container">
+				<h2 class="section-title">ご予約に関する注意事項</h2>
+				<div class="policy-items">
+					<div class="policy-item">
+						<h3>予約確定について</h3>
+						<p>予約確定に関する説明が入ります</p>
+					</div>
+					
+					<div class="policy-item">
+						<h3>キャンセルポリシー</h3>
+						<p>キャンセルポリシーの説明が入ります</p>
+					</div>
+					
+					<div class="policy-item">
+						<h3>当日の流れ</h3>
+						<p>当日の流れについての説明が入ります</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.section-title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		position: relative;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* 連絡方法セクション */
+	.contact-methods {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	
+	.contact-method {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+		text-align: center;
+	}
+	
+	.phone a {
+		font-size: 2rem;
+		font-weight: bold;
+		color: var(--color-accent);
+	}
+	
+	.email a {
+		font-size: 1.5rem;
+		color: var(--color-accent);
+	}
+	
+	.note {
+		margin-top: 1rem;
+		color: var(--color-secondary);
+		font-size: 0.9rem;
+	}
+	
+	/* フォームセクション */
+	.form-intro {
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+	
+	.form-placeholder {
+		background-color: #f5f5f5;
+		padding: 3rem;
+		border-radius: 8px;
+		text-align: center;
+		border: 2px dashed #ddd;
+	}
+	
+	/* 注意事項セクション */
+	.policy-items {
+		background-color: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+	}
+	
+	.policy-item {
+		margin-bottom: 1.5rem;
+	}
+	
+	.policy-item h3 {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+		color: var(--color-primary);
+	}
+	
+	/* レスポンシブ対応 */
+	@media (max-width: 768px) {
+		.contact-methods {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

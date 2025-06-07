@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "レンタル機材 | スタジオゼブラ";
+const description = "スタジオゼブラでは、ストロボやLEDライトなどのプロ仕様の撮影機材を追加料金なしでご利用いただけます。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout title={title} description={description}>
+	<SchemaOrg
+		type="website"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/rental-header.jpg"
+	/>
+	
+	<main class="rental-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>レンタル機材</h1>
+				<p class="lead-text">
+					スタジオゼブラでは、プロ仕様の撮影機材を追加料金なしでご利用いただけます。
+				</p>
+			</div>
+		</section>
+		
+		<section class="equipment-intro">
+			<div class="container">
+				<div class="intro-text">
+					<h2 class="section-title">充実した機材を無料でご利用可能</h2>
+					<p>
+						スタジオゼブラでは、スタジオレンタル料金に含まれる形で、各種プロ仕様の撮影機材をご用意しております。
+						照明機材から各種スタンド、背景紙まで、基本的な撮影に必要な機材は追加料金なくご利用いただけます。
+					</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="equipment-list">
+			<div class="container">
+				<h2 class="section-title">機材リスト</h2>
+				
+				<div class="equipment-category">
+					<h3>照明機材</h3>
+					<div class="equipment-items">
+						<p>照明機材の一覧が入ります</p>
+					</div>
+				</div>
+				
+				<div class="equipment-category">
+					<h3>背景</h3>
+					<div class="equipment-items">
+						<p>背景関連機材の一覧が入ります</p>
+					</div>
+				</div>
+				
+				<div class="equipment-category">
+					<h3>その他備品</h3>
+					<div class="equipment-items">
+						<p>その他備品の一覧が入ります</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="paid-options">
+			<div class="container">
+				<h2 class="section-title">有料オプション機材</h2>
+				<p>有料でご利用いただける機材の一覧が入ります</p>
+			</div>
+		</section>
+		
+		<section class="cta-section">
+			<div class="container">
+				<h2>ご予約・お問い合わせ</h2>
+				<p>機材に関するご質問は、お気軽にお問い合わせください。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">ご予約はこちら</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	.section-title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		position: relative;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* 機材カテゴリー */
+	.equipment-category {
+		margin-bottom: 3rem;
+	}
+	
+	.equipment-category h3 {
+		font-size: 1.5rem;
+		border-left: 4px solid var(--color-accent);
+		padding-left: 1rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	/* CTAセクション */
+	.cta-section {
+		background-color: #f5f5f5;
+		padding: 3rem 0;
+		text-align: center;
+		border-radius: 8px;
+	}
+	
+	.cta-buttons {
+		margin-top: 2rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+</style>

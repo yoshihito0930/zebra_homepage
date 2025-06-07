@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+const title = "よくある質問 | スタジオゼブラ";
+const description = "スタジオゼブラのご利用に関するよくあるご質問と回答をまとめています。ご予約や機材、スタジオ利用方法などについてご確認いただけます。";
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+
+// FAQ用スキーマデータ
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "予約はどのように行えばいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "予約はWEBフォーム、お電話、メールにて承っております。詳細は予約ページをご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "キャンセル料はかかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ご利用日の3日前までのキャンセルは無料です。それ以降はキャンセル料が発生します。"
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+	<!-- FAQページ専用スキーママークアップ -->
+	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+	
+	<SchemaOrg
+		type="website"
+		title={title}
+		description={description}
+		url={url}
+		image="/images/faq-header.jpg"
+	/>
+	
+	<main class="faq-page">
+		<section class="page-header">
+			<div class="container">
+				<h1>よくある質問</h1>
+				<p class="lead-text">
+					スタジオゼブラのご利用に関するよくあるご質問と回答をまとめています。
+				</p>
+			</div>
+		</section>
+		
+		<section class="faq-content">
+			<div class="container">
+				<div class="faq-categories">
+					<div class="category">
+						<h2 class="category-title">予約・キャンセルについて</h2>
+						<div class="faq-items">
+							<div class="faq-item">
+								<h3 class="question">予約はどのように行えばいいですか？</h3>
+								<div class="answer">
+									<p>予約回答が入ります</p>
+								</div>
+							</div>
+							
+							<div class="faq-item">
+								<h3 class="question">キャンセル料はかかりますか？</h3>
+								<div class="answer">
+									<p>キャンセル回答が入ります</p>
+								</div>
+							</div>
+							
+							<div class="faq-item">
+								<h3 class="question">予約の変更はできますか？</h3>
+								<div class="answer">
+									<p>予約変更回答が入ります</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="category">
+						<h2 class="category-title">料金について</h2>
+						<div class="faq-items">
+							<div class="faq-item">
+								<h3 class="question">料金に含まれるものは何ですか？</h3>
+								<div class="answer">
+									<p>料金回答が入ります</p>
+								</div>
+							</div>
+							
+							<div class="faq-item">
+								<h3 class="question">支払い方法は何がありますか？</h3>
+								<div class="answer">
+									<p>支払い回答が入ります</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="category">
+						<h2 class="category-title">機材・施設について</h2>
+						<div class="faq-items">
+							<div class="faq-item">
+								<h3 class="question">機材の持ち込みはできますか？</h3>
+								<div class="answer">
+									<p>機材持ち込み回答が入ります</p>
+								</div>
+							</div>
+							
+							<div class="faq-item">
+								<h3 class="question">更衣室はありますか？</h3>
+								<div class="answer">
+									<p>更衣室回答が入ります</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="category">
+						<h2 class="category-title">アクセスについて</h2>
+						<div class="faq-items">
+							<div class="faq-item">
+								<h3 class="question">駐車場はありますか？</h3>
+								<div class="answer">
+									<p>駐車場回答が入ります</p>
+								</div>
+							</div>
+							
+							<div class="faq-item">
+								<h3 class="question">最寄り駅からの道順を教えてください。</h3>
+								<div class="answer">
+									<p>道順回答が入ります</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="contact-section">
+			<div class="container">
+				<h2>ご質問が解決しない場合</h2>
+				<p>その他のご質問やご不明点がございましたら、お気軽にお問い合わせください。</p>
+				<div class="cta-buttons">
+					<a href="/reservation" class="btn-primary">お問い合わせはこちら</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	/* ページ共通スタイル */
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	
+	section {
+		margin-bottom: 4rem;
+	}
+	
+	/* ヘッダーセクション */
+	.page-header {
+		background-color: var(--color-primary);
+		color: white;
+		padding: 3rem 0;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+	
+	.page-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.lead-text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
+	
+	/* FAQカテゴリー */
+	.category {
+		margin-bottom: 3rem;
+	}
+	
+	.category-title {
+		font-size: 1.8rem;
+		margin-bottom: 1.5rem;
+		border-bottom: 2px solid var(--color-accent);
+		padding-bottom: 0.5rem;
+	}
+	
+	/* FAQ項目 */
+	.faq-item {
+		margin-bottom: 1.5rem;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 1rem;
+	}
+	
+	.question {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+		color: var(--color-primary);
+		font-weight: 500;
+	}
+	
+	.answer {
+		padding-left: 1.5rem;
+	}
+	
+	/* お問い合わせセクション */
+	.contact-section {
+		background-color: #f5f5f5;
+		padding: 2rem;
+		border-radius: 8px;
+		text-align: center;
+	}
+	
+	.cta-buttons {
+		margin-top: 1.5rem;
+	}
+	
+	.btn-primary {
+		display: inline-block;
+		background-color: var(--color-accent);
+		color: white;
+		padding: 0.75rem 2rem;
+		border-radius: 4px;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+	
+	.btn-primary:hover {
+		background-color: #c62b38;
+		text-decoration: none;
+	}
+</style>
+
+<script>
+	// FAQアコーディオン用のJavaScript（実装予定）
+</script>
