@@ -4,18 +4,18 @@
 <header class="header">
   <div class="header-container">
     <div class="logo">
-      <a href="/">
+      <a href="/" aria-label="スタジオゼブラ トップページ">
         <img src="/images/logo.png" alt="スタジオゼブラ" width="180" height="60">
       </a>
     </div>
     
-    <button id="mobile-menu-toggle" aria-label="メニュー" aria-expanded="false">
+    <button id="mobile-menu-toggle" aria-label="メニュー" aria-expanded="false" aria-controls="main-nav">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
     
-    <nav id="main-nav">
+    <nav id="main-nav" aria-label="メインメニュー">
       <ul class="nav-links">
         <li><a href="/">ホーム</a></li>
         <li><a href="/studio">スタジオ案内</a></li>
@@ -25,10 +25,11 @@
         <li><a href="/faq">よくある質問</a></li>
         <li><a href="/horizon">ホリゾントルール</a></li>
         <li><a href="/news">NEWS</a></li>
-        <li><a href="https://twitter.com/studiozebra1st" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <li><a href="https://twitter.com/studiozebra1st" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
           </svg>
+          <span class="visible-xs">Twitter</span>
         </a></li>
       </ul>
       
@@ -46,6 +47,7 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Safari対応 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 100;
   }
@@ -54,20 +56,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: var(--spacing-sm);
     max-width: 1200px;
     margin: 0 auto;
   }
 
   .logo img {
     height: auto;
-    max-height: 50px;
+    max-height: 40px; /* モバイル向けに少し小さく */
     width: auto;
   }
 
   .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--spacing-sm);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -78,6 +80,21 @@
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease;
+    font-size: var(--font-size-sm); /* モバイル向けに小さめ */
+    padding: 0.5rem;
+    display: block;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
   }
 
   .nav-links a:hover {
@@ -85,10 +102,14 @@
     text-decoration: none;
   }
 
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
   #main-nav {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: var(--spacing-md);
   }
 
   .btn-primary {
@@ -98,12 +119,15 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-weight: 500;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* テキストの折り返しを防ぐ */
   }
 
   .btn-primary:hover {
     background-color: #c62b38;
     text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(230, 57, 70, 0.2);
   }
 
   #mobile-menu-toggle {
@@ -117,6 +141,7 @@
     cursor: pointer;
     padding: 0;
     z-index: 10;
+    position: relative;
   }
 
   .bar {
@@ -127,7 +152,23 @@
     transition: all 0.3s ease-in-out;
   }
 
-  @media (max-width: 768px) {
+  /* モバイル時のメニュー開閉アニメーション */
+  #mobile-menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+    background-color: var(--color-accent);
+  }
+
+  #mobile-menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    background-color: var(--color-accent);
+  }
+
+  /* モバイルファースト - 小さな画面用の基本スタイル */
+  @media (max-width: 1023px) {
     #mobile-menu-toggle {
       display: flex;
     }
@@ -140,9 +181,11 @@
       background-color: white;
       width: 80%;
       height: 100%;
-      padding: 5rem 2rem 2rem;
-      transition: right 0.3s ease-in-out;
+      padding: 5rem var(--spacing-md) var(--spacing-md);
+      transition: all 0.3s ease-in-out;
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      justify-content: flex-start;
+      overflow-y: auto; /* スクロール可能に */
     }
 
     #main-nav.active {
@@ -151,12 +194,27 @@
 
     .nav-links {
       flex-direction: column;
-      gap: 1rem;
+      gap: var(--spacing-sm);
       width: 100%;
     }
     
+    /* モバイルメニュー内のリンクスタイル */
+    .nav-links a {
+      padding: var(--spacing-sm);
+      font-size: var(--font-size-md);
+      border-bottom: 1px solid #eee;
+    }
+    
+    .nav-links li:last-child a {
+      border-bottom: none;
+    }
+    
+    .nav-links a::after {
+      display: none; /* モバイルではホバーエフェクトを削除 */
+    }
+    
     .cta-button {
-      margin-top: 2rem;
+      margin-top: var(--spacing-lg);
       width: 100%;
       text-align: center;
     }
@@ -164,7 +222,77 @@
     .btn-primary {
       display: block;
       width: 100%;
+      padding: var(--spacing-sm);
+      font-size: var(--font-size-md);
     }
+  }
+
+  /* タブレット以上 (768px以上) */
+  @media (min-width: 768px) {
+    .header-container {
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .logo img {
+      max-height: 45px;
+    }
+  }
+  
+  /* デスクトップ (1024px以上) */
+  @media (min-width: 1024px) {
+    .header-container {
+      padding: var(--spacing-sm) var(--spacing-lg);
+    }
+    
+    .logo img {
+      max-height: 50px;
+    }
+    
+    .nav-links {
+      gap: var(--spacing-md);
+    }
+    
+    .nav-links a {
+      font-size: var(--font-size-md);
+    }
+    
+    /* デスクトップ時のドロップダウンメニュー対応 (必要に応じて) */
+    .nav-links li {
+      position: relative;
+    }
+  }
+
+  /* 大画面 (1280px以上) - メガメニューなど拡張機能用 */
+  @media (min-width: 1280px) {
+    .header-container {
+      padding: var(--spacing-md) var(--spacing-lg);
+    }
+  }
+
+  /* オーバーレイ - モバイルメニュー開放時の背景 */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .menu-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* アクセシビリティ対応 - キーボードフォーカスの視覚化 */
+  .nav-links a:focus,
+  .btn-primary:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 </style>
 
@@ -173,13 +301,91 @@
   document.addEventListener('astro:page-load', () => {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mainNav = document.getElementById('main-nav');
+    let menuOverlay;
+
+    // オーバーレイ要素の作成
+    if (!document.querySelector('.menu-overlay')) {
+      menuOverlay = document.createElement('div');
+      menuOverlay.className = 'menu-overlay';
+      document.body.appendChild(menuOverlay);
+    } else {
+      menuOverlay = document.querySelector('.menu-overlay') as HTMLElement;
+    }
 
     if (mobileMenuToggle && mainNav) {
+      // メニュートグルボタンのクリックイベント
       mobileMenuToggle.addEventListener('click', () => {
+        // メニューとオーバーレイのトグル
         mainNav.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+        menuOverlay?.classList.toggle('active');
+        
+        // アクセシビリティ属性の更新
         const isExpanded = mainNav.classList.contains('active');
         mobileMenuToggle.setAttribute('aria-expanded', isExpanded.toString());
+        
+        // メニュー開放時にスクロール禁止
+        document.body.style.overflow = isExpanded ? 'hidden' : '';
       });
+
+      // オーバーレイクリックでメニューを閉じる
+      menuOverlay?.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        menuOverlay?.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+
+      // ナビゲーションリンクのクリックでメニューを閉じる（モバイル時）
+      const navLinks = mainNav.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) { // モバイル時のみ
+            mainNav.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            menuOverlay?.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          }
+        });
+      });
+
+      // リサイズイベントでメニュー状態をリセット
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+          mainNav.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          menuOverlay?.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // スクロール時にヘッダーの外観を調整（オプション）
+      let lastScrollTop = 0;
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header') as HTMLElement | null;
+        if (!header) return; // ヘッダーが見つからない場合は何もしない
+        
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (currentScrollTop > lastScrollTop) {
+          // 下スクロール時
+          header.style.transform = 'translateY(-100%)';
+        } else {
+          // 上スクロール時
+          header.style.transform = 'translateY(0)';
+        }
+        
+        // スクロール位置の更新
+        if (currentScrollTop <= 0) {
+          header.classList.remove('scrolled');
+        } else {
+          header.classList.add('scrolled');
+        }
+        
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+      }, { passive: true });
     }
   });
 </script>
