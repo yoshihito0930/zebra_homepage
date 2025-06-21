@@ -1,9 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://studiozebra-1st.com',
+  integrations: [
+    tailwind({
+      // Tailwind CSS の設定
+      config: { path: './tailwind.config.mjs' },
+    }),
+  ],
   // コンパイル時の最適化
   build: {
     // スクリプト最適化

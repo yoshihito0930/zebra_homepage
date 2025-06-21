@@ -76,7 +76,7 @@
   }
 
   .nav-links a {
-    color: var(--color-primary);
+    color: var(--color-main);
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -117,17 +117,23 @@
     background-color: var(--color-accent);
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 8px; /* rounded-md */
     font-weight: 500;
     transition: all 0.2s ease;
     white-space: nowrap; /* テキストの折り返しを防ぐ */
+    box-shadow: var(--shadow); /* 標準の影 */
   }
 
   .btn-primary:hover {
-    background-color: #c62b38;
+    background-color: var(--color-accent-hover);
     text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(230, 57, 70, 0.2);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary:active {
+    background-color: var(--color-accent-active);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(1px);
   }
 
   #mobile-menu-toggle {
@@ -147,7 +153,7 @@
   .bar {
     height: 3px;
     width: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--color-main);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
   }
@@ -289,8 +295,8 @@
   }
 
   /* アクセシビリティ対応 - キーボードフォーカスの視覚化 */
-  .nav-links a:focus,
-  .btn-primary:focus {
+  .nav-links a:focus-visible,
+  .btn-primary:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }

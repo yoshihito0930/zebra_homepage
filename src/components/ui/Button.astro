@@ -1,0 +1,74 @@
+---
+// ボタンコンポーネントのプロパティ定義
+interface Props {
+  variant?: 'primary' | 'secondary' | 'text' | 'icon';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  fullWidth?: boolean;
+  class?: string;
+  ariaLabel?: string;
+  disabled?: boolean;
+}
+
+// プロパティのデフォルト値を設定
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  fullWidth = false,
+  class: className = '',
+  ariaLabel,
+  disabled = false,
+} = Astro.props;
+
+// サイズに応じてパディングとフォントサイズを設定
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-5 py-2.5 text-lg',
+};
+
+// バリアントに応じたスタイルを設定
+const variantClasses = {
+  primary: 'bg-accent hover:bg-accent-hover active:bg-accent-active text-white shadow hover:shadow-md active:shadow-sm',
+  secondary: 'bg-white hover:bg-gray-light active:bg-gray-mid border border-gray-light text-main shadow-sm hover:shadow active:shadow-none',
+  text: 'bg-transparent hover:bg-gray-light active:bg-gray-mid text-accent hover:text-accent-hover active:text-accent-active',
+  icon: 'rounded-full p-2 bg-white hover:bg-gray-light active:bg-gray-mid text-main',
+};
+
+// 共通のクラス
+const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+
+// ボタンの丸みはバリアントによって変更
+const borderRadiusClass = variant === 'icon' ? 'rounded-full' : 'rounded-md';
+
+// 幅の設定
+const widthClass = fullWidth ? 'w-full' : '';
+
+// 最終的なクラス名を構築
+const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${borderRadiusClass} ${widthClass} ${className}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+      aria-label={ariaLabel}
+      role="button"
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+      aria-label={ariaLabel}
+      disabled={disabled}
+    >
+      <slot />
+    </button>
+  )
+}

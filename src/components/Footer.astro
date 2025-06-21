@@ -105,9 +105,15 @@
   }
   
   #to-top:hover {
-    background-color: #c62b38;
+    background-color: var(--color-accent-hover);
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
+  }
+
+  #to-top:active {
+    background-color: var(--color-accent-active);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
   }
   
   /* タッチデバイス対応 */
@@ -156,7 +162,7 @@
   }
   
   .footer-nav a {
-    color: var(--color-primary);
+    color: var(--color-main);
     text-decoration: none;
     font-size: var(--font-size-sm);
     transition: color 0.2s ease;
@@ -180,19 +186,26 @@
     background-color: var(--color-accent);
     color: white;
     padding: 0.75rem 1rem;
-    border-radius: 4px;
+    border-radius: 8px; /* rounded-md */
     text-align: center;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.2s ease;
     width: 100%; /* モバイルでは幅いっぱい */
     max-width: 300px;
+    box-shadow: var(--shadow); /* 標準の影 */
   }
   
   .btn-primary:hover {
-    background-color: #c62b38;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(230, 57, 70, 0.2);
+    background-color: var(--color-accent-hover);
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-primary:active {
+    background-color: var(--color-accent-active);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(1px);
   }
   
   /* タッチデバイス対応 */
@@ -216,7 +229,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--color-primary);
+    background-color: var(--color-main);
     color: white;
     transition: all 0.2s ease;
   }
@@ -224,7 +237,13 @@
   .social-links a:hover {
     background-color: var(--color-accent);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .social-links a:active {
+    background-color: var(--color-accent-active);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(0);
   }
   
   /* タッチデバイス対応 */
@@ -237,10 +256,10 @@
   
   .copyright {
     text-align: center;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--color-gray-light);
     padding-top: var(--spacing-sm);
     font-size: var(--font-size-xs);
-    color: var(--color-secondary);
+    color: var(--color-sub2);
   }
   
   /* タブレット (640px以上) */
@@ -294,10 +313,10 @@
   }
   
   /* アクセシビリティ対応 - キーボードフォーカスの視覚化 */
-  .footer-nav a:focus,
-  .btn-primary:focus,
-  .social-links a:focus,
-  #to-top:focus {
+  .footer-nav a:focus-visible,
+  .btn-primary:focus-visible,
+  .social-links a:focus-visible,
+  #to-top:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }

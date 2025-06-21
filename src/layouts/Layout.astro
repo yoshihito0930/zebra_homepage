@@ -1,5 +1,6 @@
 ---
 import { createFontLinks, fontDisplay } from '../fonts.js';
+import '../styles/design-tokens.css'; // デザイントークンのインポート
 
 interface Props {
 	title?: string;
@@ -100,9 +101,9 @@ import Footer from '../components/Footer.astro';
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	</head>
-	<body>
+	<body class="bg-white text-main font-sans">
 		<Navigation />
-		<main>
+		<main class="container mx-auto">
 			<slot />
 		</main>
 		<Footer />
@@ -112,37 +113,12 @@ import Footer from '../components/Footer.astro';
 <style is:global>
 	/* ブレイクポイント変数の定義 */
 	:root {
-		--color-primary: #333333;
-		--color-secondary: #666666;
-		--color-accent: #e63946;
-		--color-background: #ffffff;
-		--color-text: #333333;
-		--font-family: 'Noto Sans JP', sans-serif;
-		
 		/* レスポンシブデザイン用のブレイクポイント */
 		--breakpoint-xs: 480px;    /* スマートフォン縦向き */
 		--breakpoint-sm: 640px;    /* スマートフォン横向き */
 		--breakpoint-md: 768px;    /* タブレット縦向き */
 		--breakpoint-lg: 1024px;   /* タブレット横向き/小型デスクトップ */
 		--breakpoint-xl: 1280px;   /* 大型デスクトップ */
-		
-		/* フォントサイズのスケール */
-		--font-size-base: 1rem;
-		--font-size-xs: 0.75rem;   /* 12px */
-		--font-size-sm: 0.875rem;  /* 14px */
-		--font-size-md: 1rem;      /* 16px */
-		--font-size-lg: 1.125rem;  /* 18px */
-		--font-size-xl: 1.25rem;   /* 20px */
-		--font-size-2xl: 1.5rem;   /* 24px */
-		--font-size-3xl: 1.875rem; /* 30px */
-		--font-size-4xl: 2.25rem;  /* 36px */
-		
-		/* スペーシング変数 */
-		--spacing-xs: 0.5rem;
-		--spacing-sm: 1rem;
-		--spacing-md: 1.5rem;
-		--spacing-lg: 2rem;
-		--spacing-xl: 3rem;
 	}
 	
 	/* ボックスサイジング設定 */
@@ -153,10 +129,6 @@ import Footer from '../components/Footer.astro';
 	}
 	
 	html {
-		font-family: var(--font-family);
-		background-color: var(--color-background);
-		color: var(--color-text);
-		font-size: 16px; /* ベースフォントサイズ */
 		-webkit-text-size-adjust: 100%; /* iOSでの自動テキストサイズ調整を防止 */
 	}
 	
@@ -166,15 +138,10 @@ import Footer from '../components/Footer.astro';
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		line-height: 1.6;
 	}
 	
 	main {
 		flex: 1;
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 var(--spacing-sm);
 	}
 	
 	/* レスポンシブイメージ */
@@ -188,7 +155,7 @@ import Footer from '../components/Footer.astro';
 	table {
 		width: 100%;
 		border-collapse: collapse;
-		margin: var(--spacing-md) 0;
+		margin: 1.5rem 0;
 		overflow-x: auto;
 		display: block; /* モバイルで横スクロール可能にする */
 	}
@@ -199,102 +166,9 @@ import Footer from '../components/Footer.astro';
 		}
 	}
 	
-	a {
-		color: var(--color-accent);
-		text-decoration: none;
-		transition: color 0.2s ease;
-	}
-	
-	a:hover {
-		text-decoration: underline;
-	}
-	
-	/* タイポグラフィ - レスポンシブ */
-	h1, h2, h3, h4, h5, h6 {
-		margin: 0 0 var(--spacing-sm) 0;
-		line-height: 1.2;
-		font-weight: 700;
-	}
-	
-	h1 {
-		font-size: var(--font-size-3xl);
-	}
-	
-	h2 {
-		font-size: var(--font-size-2xl);
-	}
-	
-	h3 {
-		font-size: var(--font-size-xl);
-	}
-	
-	h4 {
-		font-size: var(--font-size-lg);
-	}
-	
-	/* コンテナクラス */
-	.container {
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 var(--spacing-sm);
-	}
-	
-	/* グリッドシステム */
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		gap: var(--spacing-md);
-	}
-	
-	/* セクションの間隔 */
-	.section {
-		margin: var(--spacing-xl) 0;
-	}
-	
-	/* モバイルファースト - 小さな画面用の基本スタイル */
-	
-	/* タブレット以上 (768px以上) */
-	@media (min-width: 768px) {
-		main {
-			padding: 0 var(--spacing-md);
-		}
-		
-		h1 {
-			font-size: var(--font-size-4xl);
-		}
-		
-		h2 {
-			font-size: var(--font-size-3xl);
-		}
-		
-		.container {
-			padding: 0 var(--spacing-md);
-		}
-	}
-	
-	/* デスクトップ (1024px以上) */
-	@media (min-width: 1024px) {
-		main {
-			padding: 0 var(--spacing-lg);
-		}
-		
-		.container {
-			padding: 0 var(--spacing-lg);
-		}
-	}
-	
-	/* ユーティリティクラス */
-	.hidden-xs {
-		display: none;
-	}
-	
-	@media (min-width: 480px) {
-		.hidden-xs {
-			display: initial;
-		}
-		.visible-xs {
-			display: none;
-		}
+	/* フォーカススタイルをグローバルに適用 */
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
 	}
 </style>

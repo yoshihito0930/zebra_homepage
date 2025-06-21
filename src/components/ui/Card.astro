@@ -1,0 +1,68 @@
+---
+// カードコンポーネントのプロパティ定義
+interface Props {
+  variant?: 'standard' | 'featured';
+  padding?: 'sm' | 'md' | 'lg';
+  class?: string;
+  shadow?: 'sm' | 'md' | 'lg' | 'none';
+  hover?: boolean;
+  clickable?: boolean;
+  href?: string;
+}
+
+// プロパティのデフォルト値を設定
+const {
+  variant = 'standard',
+  padding = 'md',
+  class: className = '',
+  shadow = 'md',
+  hover = true,
+  clickable = false,
+  href,
+} = Astro.props;
+
+// パディングのクラス
+const paddingClasses = {
+  sm: 'p-4', // 16px
+  md: 'p-6', // 24px
+  lg: 'p-8', // 32px
+};
+
+// 影のクラス
+const shadowClasses = {
+  none: '',
+  sm: 'shadow-sm', // 微妙な区別、セパレータ
+  md: 'shadow',    // 標準エレベーション、カード
+  lg: 'shadow-lg', // 強調表示されたカード
+};
+
+// バリエーションによるクラス
+const variantClasses = {
+  standard: 'bg-white rounded-md', // 標準カード（8px）
+  featured: 'bg-white rounded-lg', // 特集カード（12px）
+};
+
+// ホバー効果
+const hoverClass = hover ? (variant === 'standard' ? 'hover:shadow-md' : 'hover:shadow-lg') : '';
+
+// クリック可能な要素のクラス
+const clickableClass = clickable ? 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2' : '';
+
+// トランジション
+const transitionClass = hover || clickable ? 'transition-all duration-200 ease-in-out' : '';
+
+// 最終的なクラス名を構築
+const classes = `${variantClasses[variant]} ${paddingClasses[padding]} ${shadowClasses[shadow]} ${hoverClass} ${clickableClass} ${transitionClass} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <div class={classes}>
+      <slot />
+    </div>
+  )
+}
