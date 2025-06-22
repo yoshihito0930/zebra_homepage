@@ -25,11 +25,11 @@
         <li><a href="/faq">よくある質問</a></li>
         <li><a href="/horizon">ホリゾントルール</a></li>
         <li><a href="/news">NEWS</a></li>
-        <li><a href="https://twitter.com/studiozebra1st" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+        <li><a href="https://twitter.com/studiozebra1st" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
           </svg>
-          <span class="visible-xs">Twitter</span>
+          <span class="social-text">Twitter</span>
         </a></li>
       </ul>
       
@@ -84,6 +84,28 @@
     padding: 0.5rem;
     display: block;
     position: relative;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .social-text {
+    display: none;
+  }
+  
+  @media (max-width: 1023px) {
+    .social-text {
+      display: inline;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .social-link {
+      padding: 0.5rem;
+    }
   }
 
   .nav-links a::after {
@@ -146,7 +168,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 10;
+    z-index: 101; /* メニュー表示時にもボタンが操作できるよう、より高いz-indexを設定 */
     position: relative;
   }
 
@@ -161,7 +183,7 @@
   /* モバイル時のメニュー開閉アニメーション */
   #mobile-menu-toggle.active .bar:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
-    background-color: var(--color-accent);
+    background-color: white; /* メニュー表示中はバーの色を白に */
   }
 
   #mobile-menu-toggle.active .bar:nth-child(2) {
@@ -170,7 +192,7 @@
 
   #mobile-menu-toggle.active .bar:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
-    background-color: var(--color-accent);
+    background-color: white; /* メニュー表示中はバーの色を白に */
   }
 
   /* モバイルファースト - 小さな画面用の基本スタイル */
@@ -180,35 +202,54 @@
     }
 
     #main-nav {
+      display: none; /* 初期状態では非表示に */
       position: fixed;
       top: 0;
-      right: -100%;
+      left: 0;
+      right: 0;
+      bottom: 0;
       flex-direction: column;
-      background-color: white;
-      width: 80%;
-      height: 100%;
-      padding: 5rem var(--spacing-md) var(--spacing-md);
+      background-color: var(--color-sub1); /* デザインガイドに従ったサブカラー1 */
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100); /* カスタムビューポート高さ変数を使用 */
+      padding: 4rem var(--spacing-md) var(--spacing-md);
       transition: all 0.3s ease-in-out;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-lg);
       justify-content: flex-start;
-      overflow-y: auto; /* スクロール可能に */
+      overflow-y: auto; /* スクロール可能にする */
+      z-index: 100; /* ヘッダーと同じz-indexを設定 */
     }
 
     #main-nav.active {
+      display: flex; /* アクティブ時に表示 */
       right: 0;
     }
 
     .nav-links {
       flex-direction: column;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-xs);
       width: 100%;
+      margin-bottom: auto; /* メニューリンクを上部に配置 */
+      padding-bottom: var(--spacing-md);
+      display: flex;
     }
     
     /* モバイルメニュー内のリンクスタイル */
     .nav-links a {
-      padding: var(--spacing-sm);
+      padding: var(--spacing-xs);
       font-size: var(--font-size-md);
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: white; /* メニュー内のテキストを白色に変更して視認性向上 */
+      font-weight: 500;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
     }
     
     .nav-links li:last-child a {
@@ -220,7 +261,8 @@
     }
     
     .cta-button {
-      margin-top: var(--spacing-lg);
+      margin-top: auto; /* 下部に配置 */
+      padding-top: var(--spacing-lg);
       width: 100%;
       text-align: center;
     }
@@ -230,6 +272,11 @@
       width: 100%;
       padding: var(--spacing-sm);
       font-size: var(--font-size-md);
+      background-color: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
     }
   }
 
@@ -284,13 +331,14 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 5;
+    z-index: 98; /* メインナビより下、ヘッダーより下のz-index */
     opacity: 0;
     transition: opacity 0.3s ease;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
   }
 
   .menu-overlay.active {
-    display: block;
     opacity: 1;
   }
 
@@ -302,75 +350,123 @@
   }
 </style>
 
-<script>
-  // モバイルメニューの動作
-  document.addEventListener('astro:page-load', () => {
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mainNav = document.getElementById('main-nav');
-    let menuOverlay;
+<script is:inline>
+  // モバイルメニューの動作 - 即時実行関数として定義
+  (function() {
+    function initMobileMenu() {
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mainNav = document.getElementById('main-nav');
+      
+      // オーバーレイ要素の作成
+      let menuOverlay;
+      if (!document.querySelector('.menu-overlay')) {
+        menuOverlay = document.createElement('div');
+        menuOverlay.className = 'menu-overlay';
+        document.body.appendChild(menuOverlay);
+      } else {
+        menuOverlay = document.querySelector('.menu-overlay');
+      }
+      
+      // ビューポートの高さに基づいてメニューの高さを調整する関数
+      function adjustMenuHeight() {
+        if (mainNav) {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+          
+          // モバイルの場合のみ高さを設定
+          if (window.innerWidth < 1024) {
+            mainNav.style.height = `calc(var(--vh, 1vh) * 100)`;
+          } else {
+            mainNav.style.height = 'auto';
+          }
+        }
+      }
+      
+      // 初期化時と画面サイズ変更時に高さを調整
+      adjustMenuHeight();
+      window.addEventListener('resize', adjustMenuHeight);
 
-    // オーバーレイ要素の作成
-    if (!document.querySelector('.menu-overlay')) {
-      menuOverlay = document.createElement('div');
-      menuOverlay.className = 'menu-overlay';
-      document.body.appendChild(menuOverlay);
-    } else {
-      menuOverlay = document.querySelector('.menu-overlay') as HTMLElement;
-    }
-
-    if (mobileMenuToggle && mainNav) {
-      // メニュートグルボタンのクリックイベント
-      mobileMenuToggle.addEventListener('click', () => {
-        // メニューとオーバーレイのトグル
-        mainNav.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-        menuOverlay?.classList.toggle('active');
+      if (mobileMenuToggle && mainNav) {
+        console.log('モバイルメニュー初期化完了'); // デバッグログ
         
-        // アクセシビリティ属性の更新
-        const isExpanded = mainNav.classList.contains('active');
-        mobileMenuToggle.setAttribute('aria-expanded', isExpanded.toString());
+        // メニューを開く関数
+        function openMenu() {
+          if (window.innerWidth < 1024) { // モバイルモードでのみ実行
+            mainNav.classList.add('active');
+            mainNav.style.display = 'flex';
+            mobileMenuToggle.classList.add('active');
+            menuOverlay.classList.add('active');
+            menuOverlay.style.display = 'block';
+            mobileMenuToggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            adjustMenuHeight(); // メニュー表示時に高さを調整
+          }
+        }
         
-        // メニュー開放時にスクロール禁止
-        document.body.style.overflow = isExpanded ? 'hidden' : '';
-      });
-
-      // オーバーレイクリックでメニューを閉じる
-      menuOverlay?.addEventListener('click', () => {
-        mainNav.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        menuOverlay?.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-
-      // ナビゲーションリンクのクリックでメニューを閉じる（モバイル時）
-      const navLinks = mainNav.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth < 1024) { // モバイル時のみ
+        // メニューを閉じる関数
+        function closeMenu() {
+          if (window.innerWidth < 1024) { // モバイルモードでのみ実行
             mainNav.classList.remove('active');
+            mainNav.style.display = 'none';
             mobileMenuToggle.classList.remove('active');
-            menuOverlay?.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuOverlay.style.display = 'none';
             mobileMenuToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
           }
-        });
-      });
-
-      // リサイズイベントでメニュー状態をリセット
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024) {
-          mainNav.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-          menuOverlay?.classList.remove('active');
-          document.body.style.overflow = '';
         }
-      });
+        
+        // メニュートグルボタンのクリックイベント
+        mobileMenuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log('ハンバーガーメニュークリック'); // デバッグログ
+          
+          // メニューとオーバーレイのトグル
+          if (mainNav.classList.contains('active')) {
+            closeMenu();
+          } else if (window.innerWidth < 1024) {
+            openMenu();
+          }
+        });
 
-      // スクロール時にヘッダーの外観を調整（オプション）
-      let lastScrollTop = 0;
-      window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header') as HTMLElement | null;
+        // オーバーレイクリックでメニューを閉じる
+        menuOverlay.addEventListener('click', function() {
+          closeMenu();
+        });
+
+        // ナビゲーションリンクのクリックでメニューを閉じる（モバイル時）
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            if (window.innerWidth < 1024) { // モバイル時のみ
+              closeMenu();
+            }
+          });
+        });
+
+          // リサイズイベントでメニュー状態をリセット
+        window.addEventListener('resize', function() {
+          adjustMenuHeight();
+          if (window.innerWidth >= 1024) {
+            // デスクトップモード
+            mainNav.classList.remove('active');
+            mainNav.style.display = 'flex';
+            mobileMenuToggle.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+          } else {
+            // モバイルモード - メニューが開いていなければ非表示に
+            if (!mainNav.classList.contains('active')) {
+              mainNav.style.display = 'none';
+            }
+          }
+        });
+
+        // スクロール時にヘッダーの外観を調整（オプション）
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
         if (!header) return; // ヘッダーが見つからない場合は何もしない
         
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -391,7 +487,17 @@
         }
         
         lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-      }, { passive: true });
+        }, { passive: true });
+      }
     }
-  });
+    
+    // DOMContentLoadedとastro:page-loadの両方でイベントリスナーを登録
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+      initMobileMenu(); // すでにDOMが読み込まれている場合は即時実行
+    }
+    
+    document.addEventListener('astro:page-load', initMobileMenu);
+  })();
 </script>
