@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
+import Calendar from '../components/ui/Calendar.astro';
 
 const title = "ご予約・お問い合わせ | スタジオゼブラ";
 const description = "スタジオゼブラのご予約・お問い合わせページ。オンラインフォーム、お電話、メールでのご予約を承っております。";
@@ -42,6 +43,22 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 						<p class="note">24時間受付・順次対応</p>
 					</div>
 				</div>
+			</div>
+		</section>
+		
+		<section class="reservation-calendar">
+			<div class="container">
+				<h2 class="section-title">予約カレンダー</h2>
+				<p class="calendar-intro">
+					以下のカレンダーで現在の予約状況をご確認いただけます。<br>
+					空きがあるお日にちを選んでご予約ください。
+				</p>
+				
+				<Calendar />
+				
+				<p class="calendar-note text-sm text-sub2 text-center mt-4">
+					※カレンダーは目安です。最新の空き状況はお問い合わせください。
+				</p>
 			</div>
 		</section>
 		
@@ -104,7 +121,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	
 	/* ヘッダーセクション */
 	.page-header {
-		background-color: var(--color-primary);
+		background-color: #000000; /* メインカラー */
 		color: white;
 		padding: 3rem 0;
 		margin-bottom: 3rem;
@@ -140,20 +157,26 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	.phone a {
 		font-size: 2rem;
 		font-weight: bold;
-		color: var(--color-accent);
+		color: #FF463C; /* アクセントカラー */
 	}
 	
 	.email a {
 		font-size: 1.5rem;
-		color: var(--color-accent);
+		color: #FF463C; /* アクセントカラー */
 	}
 	
 	.note {
 		margin-top: 1rem;
-		color: var(--color-secondary);
+		color: #8C8C8C; /* サブ2カラー */
 		font-size: 0.9rem;
 	}
 	
+	/* カレンダーセクション */
+	.calendar-intro {
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
 	/* フォームセクション */
 	.form-intro {
 		margin-bottom: 2rem;
@@ -182,7 +205,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	.policy-item h3 {
 		font-size: 1.3rem;
 		margin-bottom: 0.5rem;
-		color: var(--color-primary);
+		color: #000000; /* メインカラー */
 	}
 	
 	/* レスポンシブ対応 */

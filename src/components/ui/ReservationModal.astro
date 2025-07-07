@@ -1,0 +1,81 @@
+---
+// 予約詳細モーダルコンポーネント（シンプル版）
+---
+
+<div id="reservationModal" class="reservation-modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
+  <div class="modal-content bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative">
+    <button id="closeModal" class="absolute top-4 right-4 text-sub2 hover:text-main">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="modal-header mb-4 border-b border-gray-light pb-4">
+      <h3 id="modalTitle" class="text-xl font-bold">予約状況</h3>
+      <div id="modalDate" class="text-sub2"></div>
+    </div>
+    
+    <div class="modal-body">
+      <!-- 予約リストはJavaScriptで動的に生成 -->
+      <div id="reservationsContainer" class="reservation-list"></div>
+    </div>
+    
+    <div class="modal-footer mt-6 pt-4 border-t border-gray-light flex justify-end">
+      <button id="closeModalButton" class="px-4 py-2 bg-gray-light text-main rounded-md hover:bg-gray-mid transition-colors">
+        閉じる
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .reservation-modal {
+    transition: opacity 0.3s ease;
+  }
+  
+  .reservation-modal.hidden {
+    display: none;
+    opacity: 0;
+  }
+  
+  .reservation-modal.visible {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .modal-content {
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .reservation-modal.visible .modal-content {
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+// モーダルを閉じる関数
+function closeModal() {
+  const modal = document.getElementById('reservationModal');
+  modal?.classList.add('hidden');
+  modal?.classList.remove('visible');
+}
+
+// イベントリスナー
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.getElementById('closeModal');
+  const closeModalBtn = document.getElementById('closeModalButton');
+  
+  closeBtn?.addEventListener('click', closeModal);
+  closeModalBtn?.addEventListener('click', closeModal);
+  
+  // モーダルの外側をクリックしても閉じるようにする
+  const modal = document.getElementById('reservationModal');
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+});
+</script>

@@ -1,0 +1,347 @@
+---
+// Calendarコンポーネント
+// 予約表示用の月表示カレンダー
+import ReservationModal from './ReservationModal.astro';
+
+interface Props {
+  year?: number;
+  month?: number;
+  reservations?: Reservation[];
+}
+
+interface Reservation {
+  date: Date;
+  startTime: string;
+  endTime: string;
+  type: 'confirmed' | 'tentative'; // 本予約 or 仮予約
+}
+
+// 現在の日付を初期値として使用
+const today = new Date();
+const { 
+  year = today.getFullYear(), 
+  month = today.getMonth() + 1, 
+  reservations = [] 
+} = Astro.props;
+
+// カレンダーデータの生成
+const firstDayOfMonth = new Date(year, month - 1, 1);
+const lastDayOfMonth = new Date(year, month, 0);
+const daysInMonth = lastDayOfMonth.getDate();
+const firstWeekday = firstDayOfMonth.getDay(); // 0 = 日曜日, 1 = 月曜日, ...
+
+// 週の日本語表記
+const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+
+// カレンダー日付配列を作成（前月の日付も含む）
+let calendarDays = [];
+
+// 前月の日付を追加
+for (let i = 0; i < firstWeekday; i++) {
+  calendarDays.push(null);
+}
+
+// 当月の日付を追加
+for (let day = 1; day <= daysInMonth; day++) {
+  calendarDays.push(day);
+}
+
+// 予約データをフィルタリングして各日付の予約を取得する関数
+function getReservationsForDay(day: number | null): Reservation[] {
+  if (!day) return [];
+  
+  return allReservations.filter(reservation => {
+    const resDate = reservation.date;
+    return resDate.getFullYear() === year && 
+           resDate.getMonth() === month - 1 && 
+           resDate.getDate() === day;
+  });
+}
+
+// 予約タイプに応じたスタイルクラスを返す関数
+function getReservationClass(type: 'confirmed' | 'tentative'): string {
+  return type === 'confirmed' 
+    ? 'bg-sub1/20 text-sub1 border-l-2 border-sub1' 
+    : 'bg-accent/10 text-accent border-l-2 border-accent/30';
+}
+
+// 月の表示形式
+const monthDisplay = new Date(year, month - 1).toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long'
+});
+
+// ダミーの予約データ（開発用）
+const dummyReservations: Reservation[] = [
+  {
+    date: new Date(year, month - 1, 2),
+    startTime: '10:00',
+    endTime: '13:00',
+    type: 'confirmed' as const
+  },
+  {
+    date: new Date(year, month - 1, 2),
+    startTime: '15:00',
+    endTime: '18:00',
+    type: 'tentative' as const
+  },
+  {
+    date: new Date(year, month - 1, 5),
+    startTime: '13:00',
+    endTime: '16:00',
+    type: 'confirmed' as const
+  },
+  {
+    date: new Date(year, month - 1, 10),
+    startTime: '11:00',
+    endTime: '14:00',
+    type: 'tentative' as const
+  },
+  {
+    date: new Date(year, month - 1, 12),
+    startTime: '09:00',
+    endTime: '12:00',
+    type: 'confirmed' as const
+  },
+  {
+    date: new Date(year, month - 1, 12),
+    startTime: '13:00',
+    endTime: '16:00',
+    type: 'confirmed' as const
+  },
+  {
+    date: new Date(year, month - 1, 12),
+    startTime: '17:00',
+    endTime: '20:00',
+    type: 'tentative' as const
+  },
+  {
+    date: new Date(year, month - 1, 12),
+    startTime: '21:00',
+    endTime: '23:00',
+    type: 'tentative' as const
+  },
+  {
+    date: new Date(year, month - 1, 20),
+    startTime: '14:00',
+    endTime: '17:00',
+    type: 'confirmed' as const
+  }
+];
+
+// 開発用に予約データを追加
+const allReservations = reservations.length > 0 ? reservations : dummyReservations;
+---
+
+<div class="calendar-container bg-white rounded-lg shadow-md p-4 my-6">
+  <!-- カレンダーヘッダー -->
+  <div class="calendar-header flex justify-between items-center mb-6">
+    <button class="calendar-nav prev text-sub2 hover:text-main p-2 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+      前月
+    </button>
+    <h2 class="calendar-title text-xl font-bold">{monthDisplay}</h2>
+    <button class="calendar-nav next text-sub2 hover:text-main p-2 flex items-center">
+      次月
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+        <path d="m9 18 6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- カレンダーグリッド -->
+  <div class="calendar-grid grid grid-cols-7 gap-2">
+    <!-- 曜日ヘッダー -->
+    {weekdays.map((day, index) => (
+      <div class={`text-center font-medium p-2 text-sm ${index === 0 ? 'text-accent' : index === 6 ? 'text-sub1' : 'text-sub2'}`}>
+        {day}
+      </div>
+    ))}
+    
+    <!-- カレンダー日付 -->
+    {calendarDays.map((day) => {
+      const dayReservations = getReservationsForDay(day);
+      const isToday = day && today.getFullYear() === year && today.getMonth() === month - 1 && today.getDate() === day;
+      
+      return (
+        <div class={`calendar-day relative bg-white border ${isToday ? 'border-accent' : 'border-gray-light'} rounded-md p-2 flex flex-col ${day ? '' : 'bg-gray-light/30'}`}>
+          {day && (
+            <>
+              <div 
+                class={`day-number text-sm font-medium ${isToday ? 'text-accent' : ''} flex items-center justify-center w-full h-full cursor-pointer hover:bg-gray-light/30 rounded-sm transition-colors`}
+                data-day={day}
+                data-date={`${year}年${month}月${day}日`}
+                data-has-reservations={dayReservations.length > 0 ? 'true' : 'false'}
+              >
+                {day}
+                {dayReservations.length > 0 && (
+                  <span class="ml-1 flex">
+                    {dayReservations.some(r => r.type === 'confirmed') && (
+                      <span class="h-2 w-2 rounded-full bg-sub1 mx-0.5"></span>
+                    )}
+                    {dayReservations.some(r => r.type === 'tentative') && (
+                      <span class="h-2 w-2 rounded-full bg-accent mx-0.5"></span>
+                    )}
+                  </span>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      )
+    })}
+  </div>
+</div>
+
+<style>
+  .calendar-container {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .calendar-day {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    min-height: 100px;
+  }
+
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .calendar-day {
+      min-height: 80px;
+    }
+    
+    .reservation-item {
+      font-size: 0.65rem;
+      padding: 0.25rem;
+      min-height: 1.5rem; /* クリック領域を確保 */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .calendar-day {
+      min-height: 60px;
+    }
+    
+    .calendar-grid {
+      gap: 1px;
+    }
+  }
+</style>
+
+<script>
+// カレンダーとモーダルの連携用にReservationインターフェースをクライアント側で定義
+interface ClientReservation {
+  startTime: string;
+  endTime: string;
+  type: 'confirmed' | 'tentative';
+}
+
+// グローバルに日付ごとの予約を格納
+let reservationStore: { [key: number]: ClientReservation[] } = {};
+
+// クライアントサイドでのカレンダーナビゲーション
+document.addEventListener('DOMContentLoaded', () => {
+  const prevButton = document.querySelector('.calendar-nav.prev');
+  const nextButton = document.querySelector('.calendar-nav.next');
+  
+  if (prevButton && nextButton) {
+    // カレンダーのナビゲーションの実装は将来的にAstroのView Transitionsなどを
+    // 使って実装予定。現在はボタンの外観のみを実装。
+  }
+
+  // ダミーデータを格納（本番では不要）
+  setupDummyReservations();
+  
+  // 日付クリックイベント
+  const dayElements = document.querySelectorAll('.day-number');
+  dayElements.forEach(dayElement => {
+    dayElement.addEventListener('click', () => {
+      const date = dayElement.getAttribute('data-date');
+      const day = dayElement.getAttribute('data-day');
+      const hasReservations = dayElement.getAttribute('data-has-reservations') === 'true';
+      
+      // モーダルの内容をリセット
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDate = document.getElementById('modalDate');
+      const reservationsContainer = document.getElementById('reservationsContainer');
+      
+      if (modalTitle) modalTitle.textContent = '予約状況';
+      if (modalDate) modalDate.textContent = date || '';
+      
+      // 予約リストを構築
+      if (reservationsContainer) {
+        reservationsContainer.innerHTML = '';
+        
+        if (hasReservations) {
+          // その日の予約データを取得
+          const dayNum = day ? parseInt(day) : 0;
+          const reservationsForDay = reservationStore[dayNum] || [];
+          
+          reservationsForDay.forEach((res: ClientReservation) => {
+            const reservationItem = document.createElement('div');
+            reservationItem.className = 'flex justify-between items-center p-3 border-b border-gray-light';
+            
+            const timeElement = document.createElement('div');
+            timeElement.textContent = `${res.startTime} - ${res.endTime}`;
+            timeElement.className = 'font-medium';
+            
+            const typeElement = document.createElement('div');
+            typeElement.textContent = res.type === 'confirmed' ? '本予約' : '仮予約';
+            typeElement.className = res.type === 'confirmed' 
+              ? 'bg-sub1/20 text-sub1 px-2 py-1 rounded text-sm'
+              : 'bg-accent/10 text-accent px-2 py-1 rounded text-sm';
+            
+            reservationItem.appendChild(timeElement);
+            reservationItem.appendChild(typeElement);
+            reservationsContainer.appendChild(reservationItem);
+          });
+        } else {
+          const noReservation = document.createElement('div');
+          noReservation.textContent = '予約はありません';
+          noReservation.className = 'text-center text-sub2 py-6';
+          reservationsContainer.appendChild(noReservation);
+        }
+      }
+      
+      // モーダルを表示
+      const modal = document.getElementById('reservationModal');
+      modal?.classList.remove('hidden');
+      modal?.classList.add('visible');
+    });
+  });
+
+  // ダミーのデータを設定する関数
+  function setupDummyReservations() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+
+    // ダミーデータ
+    reservationStore = {
+      2: [
+        { startTime: '10:00', endTime: '13:00', type: 'confirmed' },
+        { startTime: '15:00', endTime: '18:00', type: 'tentative' }
+      ],
+      5: [
+        { startTime: '13:00', endTime: '16:00', type: 'confirmed' }
+      ],
+      10: [
+        { startTime: '11:00', endTime: '14:00', type: 'tentative' }
+      ],
+      12: [
+        { startTime: '09:00', endTime: '12:00', type: 'confirmed' },
+        { startTime: '13:00', endTime: '16:00', type: 'confirmed' },
+        { startTime: '17:00', endTime: '20:00', type: 'tentative' },
+        { startTime: '21:00', endTime: '23:00', type: 'tentative' }
+      ],
+      20: [
+        { startTime: '14:00', endTime: '17:00', type: 'confirmed' }
+      ]
+    };
+  }
+});
+</script>
+
+<ReservationModal />
